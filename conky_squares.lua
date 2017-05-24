@@ -42,7 +42,7 @@ function conky_main()
 
   -- TIME
   cairo_set_font_size(cr, 110)
-  cairo_set_source_rgba(cr, COLOR_FONT_R, COLOR_FONT_G, COLOR_FONT_B, 1)
+  cairo_set_source_rgba(cr, COLOR_FONT_R, COLOR_FONT_G, COLOR_FONT_B, 0.9)
   cairo_move_to(cr, 55, 140)
   cairo_show_text(cr, conky_parse("${time %H:%M}"))
   cairo_stroke(cr)
@@ -50,12 +50,30 @@ function conky_main()
   
   -- DATE
   cairo_set_font_size(cr, 24)
-  cairo_set_source_rgba(cr, COLOR_FONT_R, COLOR_FONT_G, COLOR_FONT_B, 1)
+  cairo_set_source_rgba(cr, COLOR_FONT_R, COLOR_FONT_G, COLOR_FONT_B, 0.9)
   cairo_move_to(cr, 63, 182)
   local time_str = string.format('%-12s', conky_parse("${time %A,}"))..conky_parse("${time %d.%m.%Y}")
   cairo_show_text(cr, time_str)
   cairo_stroke(cr)
+
+
+  -- GREETING
+  hour = tonumber(string.format('%-12s',conky_parse("${time %H}")))
+  if hour < 12 then
+	this_time = "morning"
+  elseif hour > 17 then
+	this_time = "evening"
+  else
+	this_time = "afternoon"
+  end
+
+  local greeting_str = string.format("Good "..this_time..", Chris")
+  cairo_set_font_size(cr, 40)
+  cairo_move_to(cr, 63, 300)
+  cairo_show_text(cr, greeting_str)
+  cairo_stroke(cr)
   
+
   -- CPU GRAPH
   -- Non-linear (sqrt instead) so graph area approximatly matches usage
   
