@@ -241,14 +241,13 @@ function conky_main()
 
   local cx,cy = 1160,441
   local width,height = 100,100
-  local volume_height = 100
-  local filled_height = volume_height * batt / 100
+  local filled_height = batt
   local line_width = 5
 
   cairo_set_source_rgba(cr, COLOR_BOX2_R, COLOR_BOX2_G, COLOR_BOX2_B, 1)
   cairo_move_to(cr, cx, cy)
   cairo_rel_line_to(cr, width, 0)
-  cairo_rel_line_to(cr, 0, -volume_height)
+  cairo_rel_line_to(cr, 0, -height)
   cairo_rel_line_to(cr, -width, 0)
   cairo_fill(cr)
 
