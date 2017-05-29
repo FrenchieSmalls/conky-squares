@@ -236,9 +236,6 @@ function conky_main()
 
   batt = tonumber(conky_parse("${battery_percent BAT0}"))
 
-  cairo_show_text(cr, batt)
-  cairo_stroke(cr)
-
   local cx,cy = 1160,441
   local width,height = 100,100
   local filled_height = batt
