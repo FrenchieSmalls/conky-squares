@@ -185,6 +185,7 @@ function conky_main()
 
 
   -- RANDOMIZED BACKGROUND SQUARES
+
   --rand_col = math.random()
   --rand_box(rand_col,29,687,320)
   
